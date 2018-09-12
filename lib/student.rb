@@ -5,10 +5,21 @@ class Student
   @@all = []
 
   def initialize(student_hash)
+    self.send(student_hash)
     
+    
+    @@all << self 
   end
 
   def self.create_from_collection(students_array)
+    students_array.each do |student|
+      student = Student.new
+      student.each do |names, location, profile|
+        student.name = names
+        student.location = location
+        student.profile_url = profile
+      end 
+    end 
     
   end
 
